@@ -3,7 +3,7 @@
 .slide {
   width: 280px;
   height: 308px;
-  border: 1px solid $darkGrey;
+  border: 1px solid $darkGray;
   cursor: pointer;
   overflow: hidden;
   text-overflow: clip;
@@ -30,7 +30,7 @@
 .slideDescription {
   font-size: 14px;
   padding: 8px 16px;
-  color: $lightGrey;
+  color: $lightGray;
 }
 
 @media (max-width: 1210px) {
