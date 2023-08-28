@@ -5,8 +5,8 @@ import { Container, Row, Col, Button } from "reactstrap";
 export default function PresentationSection() {
   return (
     <>
-      <Container className="py-4">
-        <Row>
+      <Container className={styles.container}>
+        <Row className={styles.row}>
           <Col md className="d-flex flex-column justify-content-center align-items-start">
             <p className={styles.subTitle}>ACESSO ILIMITADO</p>
             <p className={styles.title}>

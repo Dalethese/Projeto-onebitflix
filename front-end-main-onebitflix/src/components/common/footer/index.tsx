@@ -3,8 +3,8 @@ import styles from "./styles.module.scss";
 
 export default function Footer() {
   return (
-    <>
-      <Container className={styles.footer}>
+    <footer>
+      <Container fluid className={styles.footer}>
         <img src="/logoOnebitcode.svg" alt="logo footer" className={styles.logoFooter} />
         <a
           href="http://onebitcode.com"
@@ -15,6 +15,6 @@ export default function Footer() {
           OneBitCode.com
         </a>
       </Container>
-    </>
+    </footer>
   );
 }

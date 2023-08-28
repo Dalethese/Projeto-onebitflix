@@ -10,7 +10,7 @@ interface props {
 
 export default function SlideSection({ newestCourses }: props) {
   return (
-    <>
+    <div data-aos="fade-up" data-aos-duration="1350">
       <Container className={styles.sectionSlide}>
         <p className={styles.sectionTitle}>AULAS JÁ DISPONÍVEIS</p>
         <SlideComponent courses={newestCourses} />
@@ -20,6 +20,6 @@ export default function SlideSection({ newestCourses }: props) {
           </Button>
         </Link>
       </Container>
-    </>
+    </div>
   );
 }

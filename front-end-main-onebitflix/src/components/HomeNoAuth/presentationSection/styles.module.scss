@@ -1,5 +1,12 @@
 @import "../../../../styles/colors.module.scss";
 
+.container {
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
 .imgPresentation {
   width: 550px;
 }

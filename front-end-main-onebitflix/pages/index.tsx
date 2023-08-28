@@ -6,8 +6,10 @@ import CardsSection from "@/src/components/HomeNoAuth/CardsSection";
 import SlideSection from "@/src/components/HomeNoAuth/SlideSection";
 import { GetStaticProps } from "next";
 import courseService, { CourseType } from "@/src/services/courseServices";
-import { useEffect } from "react";
 import Footer from "@/src/components/common/footer";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 interface IndexPageProps {
   children?: React.ReactNode;
@@ -15,6 +17,13 @@ interface IndexPageProps {
 }
 
 const HomeNoAuth = ({ courses }: IndexPageProps) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+    AOS.refresh();
+  }, []);
+
   return (
     <>
       <Head>
@@ -26,15 +35,17 @@ const HomeNoAuth = ({ courses }: IndexPageProps) => {
           content="Tenha acesso aos melhores conteúdos de programação de uma forma simple e fácil"
         />
       </Head>
+
       <main>
-        <section className={styles.sectionBackground}>
+        <section className={styles.sectionBackground} data-aos="fade-zoom-in">
           <HeaderNoAuth />
           <PresentationSection />
         </section>
         <CardsSection />
         <SlideSection newestCourses={courses} />
-        <Footer />
       </main>
+
+      <Footer />
     </>
   );
 };

@@ -1,11 +1,12 @@
 @import "../../../../styles/colors.module.scss";
 
 .footer {
-  padding: 26px 0;
+  padding: 26px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
+  background-color: #151515;
 }
 
 .logoFooter {

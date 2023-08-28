@@ -3,7 +3,7 @@ import styles from "./style.module.scss";
 
 export default function CardsSection() {
   return (
-    <>
+    <div data-aos="fade-right" data-aos-duration="1200">
       <p className={styles.sectionTitle}>O QUE VOCÊ VAI ACESSAR</p>
       <Container className="d-flex flex-wrap justify-content-center gap-4 pb-5">
         <div className={styles.card1}>
@@ -60,6 +60,6 @@ export default function CardsSection() {
           </p>
         </div>
       </Container>
-    </>
+    </div>
   );
 }
