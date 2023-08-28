@@ -14,10 +14,6 @@ interface IndexPageProps {
 }
 
 const HomeNoAuth = ({ courses }: IndexPageProps) => {
-  useEffect(() => {
-    console.log(courses);
-  }, []);
-
   return (
     <>
       <Head>

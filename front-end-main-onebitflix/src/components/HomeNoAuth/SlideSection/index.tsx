@@ -1,9 +1,8 @@
 import { CourseType } from "@/src/services/courseServices";
-import styles from "./styles.module.scss";
 import { Button, Container } from "reactstrap";
 import SlideComponent from "../../common/SlideComponent";
 import Link from "next/link";
-import { useEffect } from "react";
+import styles from "./styles.module.scss";
 
 interface props {
   newestCourses: CourseType[];
@@ -12,7 +11,7 @@ interface props {
 export default function SlideSection({ newestCourses }: props) {
   return (
     <>
-      <Container fluid>
+      <Container className={styles.sectionSlide}>
         <p className={styles.sectionTitle}>AULAS JÁ DISPONÍVEIS</p>
         <SlideComponent courses={newestCourses} />
         <Link href="/register">
