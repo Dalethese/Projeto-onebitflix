@@ -3,8 +3,59 @@ import styles from "../styles/registerLogin.module.scss";
 import Head from "next/head";
 import HeaderGeneric from "@/src/components/common/HeaderGeneric";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import { FormEvent, useState } from "react";
+import authService from "@/src/services/authService";
+import { useRouter } from "next/router";
+import { ToastComponent } from "@/src/components/common/Toast";
 
 export default function Register() {
+  const router = useRouter();
+  const [toastIsOpen, setToastIsOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const firstName = formData.get("firstName") as string;
+    const lastName = formData.get("lastName") as string;
+    const phone = formData.get("phone") as string;
+    const email = formData.get("email") as string;
+    const birth = formData.get("birth") as string;
+    const password = formData.get("password") as string;
+    const confirmPassword = formData.get("confirmPassword") as string;
+    const params = {
+      firstName,
+      lastName,
+      phone,
+      email,
+      birth,
+      password,
+    };
+
+    if (password !== confirmPassword) {
+      setToastIsOpen(true);
+      setTimeout(() => {
+        setToastIsOpen(false);
+      }, 1000 * 3);
+      setToastMessage("Senhas não conferem");
+      return;
+    }
+
+    const res = await authService.register(params);
+
+    if (res.status === 201) {
+      console.log(res.data);
+      router.push("/login?registered=true");
+    } else {
+      setToastIsOpen(true);
+      setTimeout(() => {
+        setToastIsOpen(false);
+      }, 1000 * 3);
+      setToastMessage(res.data.message);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -18,7 +69,7 @@ export default function Register() {
 
         <Container className="py-5">
           <h1 className={styles.formTitle}>Bem-vindo(a) ao OneBitFlix!</h1>
-          <Form className={styles.form}>
+          <Form className={styles.form} onSubmit={handleRegister}>
             <FormGroup>
               <Label for="firstName" className={styles.label}>
                 NOME
@@ -126,6 +177,7 @@ export default function Register() {
       </main>
 
       <Footer />
+      <ToastComponent color="bg-danger" isOpen={toastIsOpen} message={toastMessage} />
     </>
   );
 }
