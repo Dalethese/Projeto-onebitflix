@@ -1,5 +1,6 @@
 import { CourseType } from "@/src/services/courseServices";
 import styles from "./style.module.scss";
+import { useEffect } from "react";
 
 interface props {
   course: CourseType;

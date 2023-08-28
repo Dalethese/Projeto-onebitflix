@@ -2,6 +2,7 @@ import { CourseType } from "@/src/services/courseServices";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import SlideCard from "../SlideCard";
+import { useEffect } from "react";
 
 interface props {
   courses: CourseType[];
