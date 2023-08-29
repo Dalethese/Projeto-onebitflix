@@ -1,4 +1,5 @@
 import FeaturedSection from "@/src/components/HomeAuth/FeaturedSection";
+import NewestCategory from "@/src/components/HomeAuth/NewestCategory";
 import HeaderAuth from "@/src/components/common/headerAuth";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -21,6 +22,7 @@ export default function HomeAuth() {
       </Head>
       <main>
         <FeaturedSection />
+        <NewestCategory />
       </main>
     </>
   );
