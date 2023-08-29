@@ -1,9 +1,9 @@
 import Head from "next/head";
 import styles from "@/styles/HomeNoAuth.module.scss";
-import PresentationSection from "@/src/components/HomeNoAuth/presentationSection";
-import HeaderNoAuth from "@/src/components/HomeNoAuth/headerNoAuth";
-import CardsSection from "@/src/components/HomeNoAuth/CardsSection";
-import SlideSection from "@/src/components/HomeNoAuth/SlideSection";
+import PresentationSection from "@/src/components/homeNoAuth/presentationSection";
+import HeaderNoAuth from "@/src/components/homeNoAuth/headerNoAuth";
+import CardsSection from "@/src/components/homeNoAuth/CardsSection";
+import SlideSection from "@/src/components/homeNoAuth/SlideSection";
 import { GetStaticProps } from "next";
 import courseService, { CourseType } from "@/src/services/courseServices";
 import Footer from "@/src/components/common/footer";
