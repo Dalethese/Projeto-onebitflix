@@ -1,3 +1,4 @@
+import FeaturedSection from "@/src/components/HomeAuth/FeaturedSection";
 import HeaderAuth from "@/src/components/common/headerAuth";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -19,7 +20,7 @@ export default function HomeAuth() {
         <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
       </Head>
       <main>
-        <HeaderAuth />
+        <FeaturedSection />
       </main>
     </>
   );
