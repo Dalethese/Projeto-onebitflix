@@ -3,6 +3,7 @@ import FeaturedCategory from "@/src/components/HomeAuth/FeaturedCategory";
 import FeaturedSection from "@/src/components/HomeAuth/FeaturedSection";
 import ListCategories from "@/src/components/HomeAuth/ListCategories";
 import NewestCategory from "@/src/components/HomeAuth/NewestCategory";
+import Footer from "@/src/components/common/footer";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -29,6 +30,8 @@ export default function HomeAuth() {
         <FeaturedCategory />
         <ListCategories />
       </main>
+
+      <Footer />
     </>
   );
 }
