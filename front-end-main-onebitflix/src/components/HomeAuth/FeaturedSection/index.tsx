@@ -8,10 +8,13 @@ import Link from "next/link";
 // import SwrSpinner from '../../common/swrSpinner'
 
 const FeaturedSection = function () {
-  const { data, error } = useSWR("featured", courseService.getFeatured);
+  const { data, error, isLoading } = useSWR("featured", courseService.getFeatured);
 
-  if (error) return error;
-  if (!data) return console.log("swrSpinner");
+  if (error) {
+    console.log(error);
+    return <div>Failed to load</div>;
+  }
+  if (isLoading) return <div>Loading...</div>;
   return (
     <>
       {data &&

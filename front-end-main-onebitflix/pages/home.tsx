@@ -1,4 +1,5 @@
 import FavoriteCourses from "@/src/components/HomeAuth/FavoriteCourses";
+import FeaturedCategory from "@/src/components/HomeAuth/FeaturedCategory";
 import FeaturedSection from "@/src/components/HomeAuth/FeaturedSection";
 import NewestCategory from "@/src/components/HomeAuth/NewestCategory";
 import Head from "next/head";
@@ -24,6 +25,7 @@ export default function HomeAuth() {
         <FeaturedSection />
         <NewestCategory />
         <FavoriteCourses />
+        <FeaturedCategory />
       </main>
     </>
   );
