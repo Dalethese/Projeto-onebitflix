@@ -4,10 +4,10 @@ import styles from "@/styles/profile.module.scss";
 
 export default function UserForm() {
   return (
-    <Form>
-      <div className={styles.forName}>
-        <p className={styles.nameAbbreviation}>{}</p>
-        <p className={styles.userName}>{}</p>
+    <Form className={styles.form}>
+      <div className={styles.formName}>
+        <p className={styles.nameAbbreviation}>JD</p>
+        <p className={styles.userName}>Jonas</p>
       </div>
       <div className={styles.memberTime}>
         <img
@@ -22,7 +22,7 @@ export default function UserForm() {
       </div>
       <hr />
       <div className={styles.inputFlexDiv}>
-        <FormGroup>
+        <FormGroup className={styles.formGroup}>
           <Label className={styles.label} for="firstName">
             NOME
           </Label>
@@ -37,7 +37,7 @@ export default function UserForm() {
             value={"Name"}
           />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className={styles.formGroup}>
           <Label className={styles.label} for="lastName">
             SOBRENOME
           </Label>
@@ -55,7 +55,7 @@ export default function UserForm() {
       </div>
 
       <div className={styles.inputNormalDiv}>
-        <FormGroup>
+        <FormGroup className={styles.formGroup}>
           <Label className={styles.label} for="phone">
             WHATSAPP / TELEGRAM
           </Label>
@@ -69,7 +69,7 @@ export default function UserForm() {
             value={"+55 (21) 99999-9999"}
           />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className={styles.formGroup}>
           <Label className={styles.label} for="email">
             E-MAIL
           </Label>
