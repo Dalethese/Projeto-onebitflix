@@ -3,13 +3,15 @@ import { Container, Form, Input } from "reactstrap";
 import Modal from "react-modal";
 import styles from "./styles.module.scss";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import usersService from "@/src/services/usersService";
 Modal.setAppElement("#__next");
 
 const HeaderAuth = function () {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
+  const [initials, setInitials] = useState("");
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -23,6 +25,14 @@ const HeaderAuth = function () {
     sessionStorage.removeItem("onebitflix-token");
     router.push("/");
   };
+
+  useEffect(() => {
+    usersService.getUser().then((user) => {
+      const firstName = user.firstName.slice(0, 1);
+      const lastName = user.lastName.slice(0, 1);
+      setInitials(firstName + lastName);
+    });
+  }, [initials]);
 
   return (
     <>
@@ -51,7 +61,7 @@ const HeaderAuth = function () {
             />
           </div>
           <p className={styles.userProfile} onClick={handleOpenModal}>
-            AB
+            {initials}
           </p>
         </div>
       </Container>

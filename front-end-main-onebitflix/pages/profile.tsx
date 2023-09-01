@@ -1,10 +1,17 @@
 import Head from "next/head";
 import HeaderAuth from "@/src/components/common/headerAuth";
 import UserForm from "@/src/components/profile/user";
-import { Button, Col, Container, Row } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
+import useSWR from "swr";
 import styles from "@/styles/profile.module.scss";
+import usersService from "@/src/services/usersService";
 
 export default function Profile() {
+  const { data, error } = useSWR("/users/current", usersService.getUser);
+
+  if (error) return <div>Erro ao carregar</div>;
+  if (!data) return <div>Carregando...</div>;
+
   return (
     <>
       <Head>
@@ -26,7 +33,7 @@ export default function Profile() {
             </Col>
 
             <Col md>
-              <UserForm />
+              <UserForm createdAt={new Date(data.createdAt)} />
             </Col>
           </Row>
         </Container>

@@ -1,4 +1,3 @@
-import { error } from "console";
 import api from "./api";
 
 export type EpisodesType = {

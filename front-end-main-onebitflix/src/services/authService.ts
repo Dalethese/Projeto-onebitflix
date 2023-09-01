@@ -29,11 +29,7 @@ const authService = {
 
   login: async (params: LoginParams) => {
     const res = await api.post("/auth/login", params).catch((error) => {
-      if (error.response.status === 400) {
-        return error.response;
-      }
-
-      return error;
+      return error.response;
     });
 
     if (res.status === 200) {

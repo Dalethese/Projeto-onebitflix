@@ -52,7 +52,6 @@ export default function Register() {
     const res = await authService.register(params);
 
     if (res.status === 201) {
-      console.log(res.data);
       router.push("/login?registered=true");
     } else {
       setToastIsOpen(true);

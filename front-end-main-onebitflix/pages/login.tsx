@@ -30,7 +30,14 @@ export default function Login() {
 
     if (status === 200) {
       router.push("/home");
-    } else {
+    }
+
+    if (status === 404) {
+      showToast({ message: "Email não cadastrado", color: "bg-danger" });
+    }
+
+    if (status === 401) {
+      showToast({ message: "Email ou senha inválido", color: "bg-danger" });
     }
   };
 
