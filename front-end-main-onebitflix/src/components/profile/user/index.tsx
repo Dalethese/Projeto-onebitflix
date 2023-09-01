@@ -10,14 +10,6 @@ interface props {
   createdAt: Date;
 }
 
-interface IUser {
-  firstName: string;
-  lastName: string;
-  phone: string;
-  email: string;
-  createdAt: string;
-}
-
 export default function UserForm({ createdAt }: props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -60,7 +52,7 @@ export default function UserForm({ createdAt }: props) {
   useEffect(() => {
     usersService
       .getUser()
-      .then((user: IUser) => {
+      .then((user) => {
         setFirstName(user.firstName);
         setLastName(user.lastName);
         setPhone(user.phone);

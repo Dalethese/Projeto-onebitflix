@@ -1,14 +1,24 @@
 import api from "./api";
 
-export interface IUser {
+interface IUser {
+  id: number;
   firstName: string;
   lastName: string;
   phone: string;
   email: string;
+  birth: string;
+  password: string;
+  role: "admin" | "user";
+  createdAt: string;
 }
 
+type GetUserProps = Pick<
+  IUser,
+  "firstName" | "lastName" | "email" | "phone" | "createdAt"
+>;
+
 const usersService = {
-  getUser: async (): Promise<IUser> => {
+  getUser: async (): Promise<GetUserProps> => {
     const token = sessionStorage.getItem("onebitflix-token");
 
     const response = await api
