@@ -3,7 +3,7 @@ import { Container, Form, Input } from "reactstrap";
 import Modal from "react-modal";
 import styles from "./styles.module.scss";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import usersService from "@/src/services/usersService";
 Modal.setAppElement("#__next");
@@ -12,6 +12,7 @@ const HeaderAuth = function () {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [initials, setInitials] = useState("");
+  const [searchName, setSearchName] = useState("");
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -24,6 +25,18 @@ const HeaderAuth = function () {
   const handleLogout = () => {
     sessionStorage.removeItem("onebitflix-token");
     router.push("/");
+  };
+
+  const handleSearch = (ev: FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+
+    router.push(`/search?name=${searchName}`);
+    setSearchName("");
+  };
+
+  const handleSearchClick = () => {
+    router.push(`/search?name=${searchName}`);
+    setSearchName("");
   };
 
   useEffect(() => {
@@ -46,18 +59,20 @@ const HeaderAuth = function () {
         </Link>
         <div className="d-flex align-items-center">
           <div className="position-relative">
-            <Form>
+            <Form onSubmit={handleSearch}>
               <Input
                 name="search"
                 type="search"
                 placeholder="Pesquisar"
                 className={styles.input}
+                onChange={(e) => setSearchName(e.target.value.toLowerCase())}
               />
             </Form>
             <img
               src="/homeAuth/iconSearch.svg"
               alt="lupaHeader"
               className={styles.searchImg}
+              onChange={handleSearchClick}
             />
           </div>
           <p className={styles.userProfile} onClick={handleOpenModal}>
