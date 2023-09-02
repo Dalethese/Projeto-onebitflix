@@ -21,12 +21,18 @@ function EpisodeList({ episode, course }: EpisodeListProps) {
   };
 
   const handleEpisodePlayer = () => {
-    router.push(`/course/episode/${episode.order - 1}?courseId=${course.id}`);
+    router.push(
+      `/course/episode/${episode.order - 1}?courseId=${course.id}&episodeId=${episode.id}`
+    );
   };
 
   return (
     <>
-      <Link href={`/course/episode/${episode.order - 1}?courseId=${course.id}`}>
+      <Link
+        href={`/course/episode/${episode.order - 1}?courseId=${course.id}&episodeId=${
+          episode.id
+        }`}
+      >
         <div className={styles.episodeCard}>
           <div className={styles.episodeOrderTime}>
             <p className={styles.episodeOrder}>Episódio Nº {episode.order}</p>
