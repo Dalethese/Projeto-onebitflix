@@ -1,3 +1,5 @@
+import { HttpStatusCode } from "axios";
+import { getToken } from "../utils/getToken";
 import api from "./api";
 
 interface IUser {
@@ -12,13 +14,18 @@ interface IUser {
   createdAt: string;
 }
 
+interface PasswordParams {
+  currentPassword: string;
+  newPassword: string;
+}
+
 type GetUserProps = Pick<
   IUser,
   "firstName" | "lastName" | "email" | "phone" | "createdAt"
 >;
 
 const usersService = {
-  getUser: async (): Promise<GetUserProps> => {
+  getUser: async (): Promise<IUser> => {
     const token = sessionStorage.getItem("onebitflix-token");
 
     const response = await api
@@ -52,6 +59,24 @@ const usersService = {
       });
 
     return response;
+  },
+
+  passwordUpdate: async (params: PasswordParams): Promise<HttpStatusCode> => {
+    const token = getToken();
+
+    const res = await api
+      .put("users/current/password", params, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 400) {
+          return error.response;
+        }
+      });
+
+    return res.status;
   },
 };
 
