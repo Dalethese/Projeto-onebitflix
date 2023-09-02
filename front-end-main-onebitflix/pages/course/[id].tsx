@@ -3,7 +3,6 @@ import EpisodeList from "@/src/components/EpisodeList";
 import Footer from "@/src/components/common/footer";
 import HeaderAuth from "@/src/components/common/headerAuth";
 import useCoursePage from "@/src/hooks/useCoursePage";
-import courseService, { CourseType } from "@/src/services/courseServices";
 import styles from "@/styles/coursePage.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -103,7 +102,7 @@ export default function CoursePage() {
             </p>
           ) : (
             course?.episodes?.map((episode) => (
-              <EpisodeList key={episode.id} episode={episode} />
+              <EpisodeList key={episode.id} episode={episode} course={course} />
             ))
           )}
         </Container>
