@@ -156,11 +156,14 @@
   }
 }
 
-@media (max-width: 761px) {
+@media (max-width: 767px) {
   .inputFlexDiv {
     gap: 25px;
   }
   .inputFlex {
+    width: 400px;
+  }
+  .input {
     width: 400px;
   }
 }
@@ -192,6 +195,13 @@
     input {
       width: 100%;
     }
+  }
+
+  .input {
+    width: 100%;
+  }
+  .inputFlex {
+    width: 100%;
   }
 
   .inputNormalDiv {
