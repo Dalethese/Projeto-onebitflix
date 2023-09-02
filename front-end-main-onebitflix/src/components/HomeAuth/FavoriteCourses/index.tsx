@@ -2,6 +2,7 @@ import useSWR from "swr";
 import courseService from "@/src/services/courseServices";
 import SlideComponent from "../../common/SlideComponent";
 import styles from "../../../../styles/slideCategory.module.scss";
+import SpinnerComponent from "../../common/Spinner";
 
 interface FavoriteCoursesProps {}
 
@@ -9,7 +10,7 @@ function FavoriteCourses() {
   const { data, error, isLoading } = useSWR("/favorites", courseService.getFav);
 
   if (error) return <div>Failed to load</div>;
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <SpinnerComponent />;
 
   console.log(data);
 

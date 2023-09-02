@@ -5,6 +5,7 @@ import courseService, { CourseType } from "@/src/services/courseServices";
 import HeaderAuth from "../../common/headerAuth";
 import { Button, Container } from "reactstrap";
 import Link from "next/link";
+import SpinnerComponent from "../../common/Spinner";
 // import SwrSpinner from '../../common/swrSpinner'
 
 const FeaturedSection = function () {
@@ -14,7 +15,7 @@ const FeaturedSection = function () {
     console.log(error);
     return <div>Failed to load</div>;
   }
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <SpinnerComponent />;
   return (
     <>
       {data &&

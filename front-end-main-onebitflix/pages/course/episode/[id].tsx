@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import HeaderGeneric from "@/src/components/common/HeaderGeneric";
+import SpinnerComponent from "@/src/components/common/Spinner";
 import courseService, { CourseType } from "@/src/services/courseServices";
 import watchEpisodeService from "@/src/services/episodeService";
 import { getToken } from "@/src/utils/getToken";
@@ -84,7 +85,7 @@ export default function EpisodePlayer() {
     getCourse();
   }, [courseId]);
 
-  if (course?.episodes === undefined) return <h1>{"<PageSpinner />"}</h1>;
+  if (course?.episodes === undefined) return <SpinnerComponent />;
 
   if (episodeOrder + 1 < course?.episodes?.length) {
     if (Math.round(episodeTime) === course.episodes[episodeOrder].secondsLong) {

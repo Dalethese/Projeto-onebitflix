@@ -1,6 +1,7 @@
 import categoriesService, { CategoryType } from "@/src/services/categoriesService";
 import useSWR from "swr";
 import SlideCategories from "./SlideCategories";
+import SpinnerComponent from "../../common/Spinner";
 
 export default function ListCategories() {
   const { data, error, isLoading } = useSWR(
@@ -9,7 +10,7 @@ export default function ListCategories() {
   );
 
   if (error) return <div>Falha ao carregar</div>;
-  if (isLoading) return <div>Carregando...</div>;
+  if (isLoading) return <SpinnerComponent />;
 
   return (
     <>

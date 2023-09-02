@@ -2,6 +2,7 @@ import styles from "@/styles/slideCategory.module.scss";
 import useSWR from "swr";
 import categoriesService from "@/src/services/categoriesService";
 import SlideComponent from "@/src/components/common/SlideComponent";
+import SpinnerComponent from "@/src/components/common/Spinner";
 
 interface props {
   categoryId: number;
@@ -14,7 +15,7 @@ function SlideCategories({ categoryId, categoryName }: props) {
   });
 
   if (error) return <div>Falha ao carregar</div>;
-  if (isLoading) return <div>Carregando...</div>;
+  if (isLoading) return <SpinnerComponent />;
 
   return (
     <>
