@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { Container, Form, Input } from "reactstrap";
-import Modal from "react-modal";
-import styles from "./styles.module.scss";
-import Link from "next/link";
+import { Button, Container, Form, Input } from "reactstrap";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Modal from "react-modal";
+import Link from "next/link";
 import usersService from "@/src/services/usersService";
+import styles from "./styles.module.scss";
 Modal.setAppElement("#__next");
 
 const HeaderAuth = function () {
@@ -62,18 +62,20 @@ const HeaderAuth = function () {
             <Form onSubmit={handleSearch}>
               <Input
                 name="search"
-                type="search"
+                type="text"
                 placeholder="Pesquisar"
                 className={styles.input}
                 onChange={(e) => setSearchName(e.target.value.toLowerCase())}
               />
+              <Button className={styles.buttonSearch} type="submit">
+                <img
+                  src="/homeAuth/iconSearch.svg"
+                  alt="lupaHeader"
+                  className={styles.searchImg}
+                  onChange={handleSearchClick}
+                />
+              </Button>
             </Form>
-            <img
-              src="/homeAuth/iconSearch.svg"
-              alt="lupaHeader"
-              className={styles.searchImg}
-              onChange={handleSearchClick}
-            />
           </div>
           <p className={styles.userProfile} onClick={handleOpenModal}>
             {initials}

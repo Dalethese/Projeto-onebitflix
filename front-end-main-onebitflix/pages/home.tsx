@@ -3,19 +3,15 @@ import FeaturedCategory from "@/src/components/HomeAuth/FeaturedCategory";
 import FeaturedSection from "@/src/components/HomeAuth/FeaturedSection";
 import ListCategories from "@/src/components/HomeAuth/ListCategories";
 import NewestCategory from "@/src/components/HomeAuth/NewestCategory";
+import SpinnerComponent from "@/src/components/common/Spinner";
 import Footer from "@/src/components/common/footer";
+import useAuth from "@/src/hooks/useAuth";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function HomeAuth() {
-  const router = useRouter();
+  const { loading } = useAuth();
 
-  useEffect(() => {
-    if (sessionStorage.getItem("onebitflix-token")) {
-      router.push("/home");
-    }
-  }, []);
+  if (loading) return <SpinnerComponent />;
 
   return (
     <>

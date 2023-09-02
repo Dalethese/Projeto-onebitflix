@@ -7,18 +7,17 @@ import { FormEvent, useEffect, useState } from "react";
 import authService from "@/src/services/authService";
 import { useRouter } from "next/router";
 import { ToastComponent } from "@/src/components/common/Toast";
+import useShowToast from "@/src/hooks/useShowToast";
 
 export default function Register() {
   const router = useRouter();
+  const { showToast, toastColor, toastIsOpen, toastMessage } = useShowToast();
 
   useEffect(() => {
     if (sessionStorage.getItem("onebitflix-token")) {
       router.push("/home");
     }
   }, []);
-
-  const [toastIsOpen, setToastIsOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
 
   const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,11 +40,11 @@ export default function Register() {
     };
 
     if (password !== confirmPassword) {
-      setToastIsOpen(true);
-      setTimeout(() => {
-        setToastIsOpen(false);
-      }, 1000 * 3);
-      setToastMessage("Senhas não conferem");
+      showToast({
+        message: "As senhas não conferem",
+        color: "bg-danger",
+      });
+
       return;
     }
 
@@ -54,11 +53,10 @@ export default function Register() {
     if (res.status === 201) {
       router.push("/login?registered=true");
     } else {
-      setToastIsOpen(true);
-      setTimeout(() => {
-        setToastIsOpen(false);
-      }, 1000 * 3);
-      setToastMessage(res.data.message);
+      showToast({
+        message: res.data.message,
+        color: "bg-danger",
+      });
     }
   };
 
@@ -183,7 +181,7 @@ export default function Register() {
       </main>
 
       <Footer />
-      <ToastComponent color="bg-danger" isOpen={toastIsOpen} message={toastMessage} />
+      <ToastComponent color={toastColor} isOpen={toastIsOpen} message={toastMessage} />
     </>
   );
 }

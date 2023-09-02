@@ -8,13 +8,16 @@ import usersService from "@/src/services/usersService";
 import { useState } from "react";
 import PasswordForm from "@/src/components/profile/password";
 import SpinnerComponent from "@/src/components/common/Spinner";
+import useAuth from "@/src/hooks/useAuth";
 
 export default function Profile() {
   const { data, error } = useSWR("/users/current", usersService.getUser);
   const [form, setForm] = useState("userForm");
+  const { loading } = useAuth();
 
   if (error) return <div>Erro ao carregar</div>;
   if (!data) return <SpinnerComponent />;
+  if (loading) return <SpinnerComponent />;
 
   return (
     <>

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import HeaderGeneric from "@/src/components/common/HeaderGeneric";
 import SpinnerComponent from "@/src/components/common/Spinner";
+import useAuth from "@/src/hooks/useAuth";
 import courseService, { CourseType } from "@/src/services/courseServices";
 import watchEpisodeService from "@/src/services/episodeService";
 import { getToken } from "@/src/utils/getToken";
@@ -17,6 +18,7 @@ export default function EpisodePlayer() {
   const [isReady, setIsReady] = useState(false);
   const [getEpisodeTime, setGetEpisodeTime] = useState(0);
   const [episodeTime, setEpisodeTime] = useState(0);
+  const { loading } = useAuth();
 
   const episodeOrder = parseFloat(router.query.id?.toString() || "");
   const episodeId = parseFloat(router.query.episodeId?.toString() || "");
@@ -92,6 +94,8 @@ export default function EpisodePlayer() {
       handleNextEpisode();
     }
   }
+
+  if (loading) return <SpinnerComponent />;
 
   return (
     <>

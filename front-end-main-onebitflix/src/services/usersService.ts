@@ -19,10 +19,7 @@ interface PasswordParams {
   newPassword: string;
 }
 
-type GetUserProps = Pick<
-  IUser,
-  "firstName" | "lastName" | "email" | "phone" | "createdAt"
->;
+type UpdateUserProps = Pick<IUser, "firstName" | "lastName" | "email" | "phone">;
 
 const usersService = {
   getUser: async (): Promise<IUser> => {
@@ -43,7 +40,7 @@ const usersService = {
     return response.data;
   },
 
-  userUpdate: async (params: IUser) => {
+  userUpdate: async (params: UpdateUserProps) => {
     const token = sessionStorage.getItem("onebitflix-token");
 
     const response = await api

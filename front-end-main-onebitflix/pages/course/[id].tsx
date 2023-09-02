@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import EpisodeList from "@/src/components/EpisodeList";
+import SpinnerComponent from "@/src/components/common/Spinner";
 import Footer from "@/src/components/common/footer";
 import HeaderAuth from "@/src/components/common/headerAuth";
+import useAuth from "@/src/hooks/useAuth";
 import useCoursePage from "@/src/hooks/useCoursePage";
 import styles from "@/styles/coursePage.module.scss";
 import Head from "next/head";
@@ -16,10 +18,13 @@ export default function CoursePage() {
     states: { course, liked, favorited },
     functions: { getCourse, handleFavCourse, handleLikeCourse },
   } = useCoursePage({ id: id as string });
+  const { loading } = useAuth();
 
   useEffect(() => {
     getCourse();
   }, [id]);
+
+  if (loading) return <SpinnerComponent />;
 
   return (
     <>

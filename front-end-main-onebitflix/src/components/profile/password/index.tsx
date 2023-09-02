@@ -1,7 +1,7 @@
 import useShowToast from "@/src/hooks/useShowToast";
 import usersService from "@/src/services/usersService";
 import styles from "@/styles/profile.module.scss";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { ToastComponent } from "../../common/Toast";
 

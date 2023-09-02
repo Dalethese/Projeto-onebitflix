@@ -6,7 +6,6 @@ import HeaderAuth from "../../common/headerAuth";
 import { Button, Container } from "reactstrap";
 import Link from "next/link";
 import SpinnerComponent from "../../common/Spinner";
-// import SwrSpinner from '../../common/swrSpinner'
 
 const FeaturedSection = function () {
   const { data, error, isLoading } = useSWR("featured", courseService.getFeatured);
@@ -16,6 +15,7 @@ const FeaturedSection = function () {
     return <div>Failed to load</div>;
   }
   if (isLoading) return <SpinnerComponent />;
+
   return (
     <>
       {data &&
@@ -33,7 +33,7 @@ const FeaturedSection = function () {
             <Container>
               <p className={styles.title}>{course.name}</p>
               <p className={styles.description}>{course.synopsis}</p>
-              <Link href={`/courses/${course.id}`}>
+              <Link href={`/course/${course.id}`}>
                 <Button outline color="light" className={styles.button}>
                   ACESSE AGORA!
                   <img

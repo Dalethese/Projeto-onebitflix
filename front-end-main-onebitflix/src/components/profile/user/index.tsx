@@ -1,53 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect } from "react";
 import usersService from "@/src/services/usersService";
 import styles from "@/styles/profile.module.scss";
 import useShowToast from "@/src/hooks/useShowToast";
 import { ToastComponent } from "../../common/Toast";
+import useRegister from "@/src/hooks/useRegister";
 
 interface props {
   createdAt: Date;
 }
 
 export default function UserForm({ createdAt }: props) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-
-  const { showToast, toastColor, toastIsOpen, toastMessage } = useShowToast();
-
-  const formatter = new Intl.DateTimeFormat("pt-BR", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const res = await usersService.userUpdate({
-      firstName,
-      lastName,
-      phone,
-      email,
-    });
-
-    console.log(res);
-
-    if (res.status === 200) {
-      showToast({
-        message: "Atualizado com sucesso",
-        color: "bg-success",
-      });
-    } else {
-      showToast({
-        message: "Você não pode alterar para esse email",
-        color: "bg-danger",
-      });
-    }
-  };
+  const {
+    states: { firstName, lastName, phone, email },
+    setters: { setFirstName, setLastName, setPhone, setEmail },
+    handlers: { handleSubmit },
+    formatter,
+  } = useRegister();
+  const { toastColor, toastIsOpen, toastMessage } = useShowToast();
 
   useEffect(() => {
     usersService
@@ -132,6 +103,7 @@ export default function UserForm({ createdAt }: props) {
               type="tel"
               id="phone"
               placeholder="(xx) 9xxxx-xxxx"
+              data-mask="[-]+55 (00) 00000-0000"
               required
               className={styles.input}
               value={phone}
