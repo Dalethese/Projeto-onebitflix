@@ -64,8 +64,6 @@ export default function EpisodePlayer() {
     if (res.status === 200) {
       setCourse(res.data);
     }
-    console.log(res.data);
-    console.log(episodeOrder);
   };
 
   const handlePreviousEpisode = () => {

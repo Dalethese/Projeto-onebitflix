@@ -1,3 +1,4 @@
+import { HttpStatusCode } from "axios";
 import api from "./api";
 
 interface RegisterParams {
@@ -14,6 +15,10 @@ interface LoginParams {
   password: string;
 }
 
+interface LoginResponse {
+  status: HttpStatusCode;
+}
+
 const authService = {
   register: async (params: RegisterParams) => {
     const res = await api.post("/auth/register", params).catch((error) => {
@@ -27,7 +32,7 @@ const authService = {
     return res;
   },
 
-  login: async (params: LoginParams) => {
+  login: async (params: LoginParams): Promise<LoginResponse> => {
     const res = await api.post("/auth/login", params).catch((error) => {
       return error.response;
     });

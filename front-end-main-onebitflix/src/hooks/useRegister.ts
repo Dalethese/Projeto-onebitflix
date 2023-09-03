@@ -25,8 +25,6 @@ export default function useRegister() {
       email,
     });
 
-    console.log(res);
-
     if (res.status === 200) {
       showToast({
         message: "Atualizado com sucesso",

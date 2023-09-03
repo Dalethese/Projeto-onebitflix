@@ -12,8 +12,6 @@ function FavoriteCourses() {
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <SpinnerComponent />;
 
-  console.log(data);
-
   return (
     <>
       <h2 className={styles.titleCategory}>Favoritos</h2>
